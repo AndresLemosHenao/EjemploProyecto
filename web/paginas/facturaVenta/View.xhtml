@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaVentaViewDlg" widgetVar="FacturaVentaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewFacturaVentaTitle}">
+            <h:form id="FacturaVentaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaVentaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_idVenta}"/>
+                        <h:outputText value="#{facturaVentaController.selected.idVenta}" title="#{bundle.ViewFacturaVentaTitle_idVenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_numerofacturaVenta}"/>
+                        <h:outputText value="#{facturaVentaController.selected.numerofacturaVenta}" title="#{bundle.ViewFacturaVentaTitle_numerofacturaVenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_cantidadProducto}"/>
+                        <h:outputText value="#{facturaVentaController.selected.cantidadProducto}" title="#{bundle.ViewFacturaVentaTitle_cantidadProducto}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_valorUnitarioProducto}"/>
+                        <h:outputText value="#{facturaVentaController.selected.valorUnitarioProducto}" title="#{bundle.ViewFacturaVentaTitle_valorUnitarioProducto}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_totalValorProducto}"/>
+                        <h:outputText value="#{facturaVentaController.selected.totalValorProducto}" title="#{bundle.ViewFacturaVentaTitle_totalValorProducto}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_subtotalVenta}"/>
+                        <h:outputText value="#{facturaVentaController.selected.subtotalVenta}" title="#{bundle.ViewFacturaVentaTitle_subtotalVenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_valorIvaProductos}"/>
+                        <h:outputText value="#{facturaVentaController.selected.valorIvaProductos}" title="#{bundle.ViewFacturaVentaTitle_valorIvaProductos}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_totalFacturaVenta}"/>
+                        <h:outputText value="#{facturaVentaController.selected.totalFacturaVenta}" title="#{bundle.ViewFacturaVentaTitle_totalFacturaVenta}"/>
+                        <h:outputText value="#{bundle.ViewFacturaVentaLabel_clienteidCliente}"/>
+                        <h:outputText value="#{facturaVentaController.selected.clienteidCliente}" title="#{bundle.ViewFacturaVentaTitle_clienteidCliente}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="FacturaVentaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuarioSistemaCreateDlg" widgetVar="UsuarioSistemaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateUsuarioSistemaTitle}">
+            <h:form id="UsuarioSistemaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuarioSistemaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateUsuarioSistemaLabel_idUsuarioSistema}" for="idUsuarioSistema" />
+                        <p:inputText id="idUsuarioSistema" value="#{usuarioSistemaController.selected.idUsuarioSistema}" title="#{bundle.CreateUsuarioSistemaTitle_idUsuarioSistema}" required="true" requiredMessage="#{bundle.CreateUsuarioSistemaRequiredMessage_idUsuarioSistema}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioSistemaLabel_nombreUsuario}" for="nombreUsuario" />
+                        <p:inputText id="nombreUsuario" value="#{usuarioSistemaController.selected.nombreUsuario}" title="#{bundle.CreateUsuarioSistemaTitle_nombreUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioSistemaRequiredMessage_nombreUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioSistemaLabel_passwordUsuario}" for="passwordUsuario" />
+                        <p:inputText id="passwordUsuario" value="#{usuarioSistemaController.selected.passwordUsuario}" title="#{bundle.CreateUsuarioSistemaTitle_passwordUsuario}" required="true" requiredMessage="#{bundle.CreateUsuarioSistemaRequiredMessage_passwordUsuario}"/>
+                        <p:outputLabel value="#{bundle.CreateUsuarioSistemaLabel_rolidRol}" for="rolidRol" />
+                        <p:selectOneMenu id="rolidRol" value="#{usuarioSistemaController.selected.rolidRol}" required="true" requiredMessage="#{bundle.EditUsuarioSistemaRequiredMessage_rolidRol}">
+                            <f:selectItems value="#{rolController.itemsAvailableSelectOne}"
+                                           var="rolidRolItem"
+                                           itemValue="#{rolidRolItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuarioSistemaController.create}" value="#{bundle.Save}" update="display,:UsuarioSistemaListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioSistemaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="UsuarioSistemaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

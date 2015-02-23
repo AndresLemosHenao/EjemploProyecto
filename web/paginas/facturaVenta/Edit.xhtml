@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaVentaEditDlg" widgetVar="FacturaVentaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFacturaVentaTitle}">
+            <h:form id="FacturaVentaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_idVenta}" for="idVenta" />
+                        <p:inputText id="idVenta" value="#{facturaVentaController.selected.idVenta}" title="#{bundle.EditFacturaVentaTitle_idVenta}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_idVenta}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_numerofacturaVenta}" for="numerofacturaVenta" />
+                        <p:inputText id="numerofacturaVenta" value="#{facturaVentaController.selected.numerofacturaVenta}" title="#{bundle.EditFacturaVentaTitle_numerofacturaVenta}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_numerofacturaVenta}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_cantidadProducto}" for="cantidadProducto" />
+                        <p:inputText id="cantidadProducto" value="#{facturaVentaController.selected.cantidadProducto}" title="#{bundle.EditFacturaVentaTitle_cantidadProducto}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_cantidadProducto}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_valorUnitarioProducto}" for="valorUnitarioProducto" />
+                        <p:inputText id="valorUnitarioProducto" value="#{facturaVentaController.selected.valorUnitarioProducto}" title="#{bundle.EditFacturaVentaTitle_valorUnitarioProducto}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_valorUnitarioProducto}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_totalValorProducto}" for="totalValorProducto" />
+                        <p:inputText id="totalValorProducto" value="#{facturaVentaController.selected.totalValorProducto}" title="#{bundle.EditFacturaVentaTitle_totalValorProducto}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_totalValorProducto}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_subtotalVenta}" for="subtotalVenta" />
+                        <p:inputText id="subtotalVenta" value="#{facturaVentaController.selected.subtotalVenta}" title="#{bundle.EditFacturaVentaTitle_subtotalVenta}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_subtotalVenta}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_valorIvaProductos}" for="valorIvaProductos" />
+                        <p:inputText id="valorIvaProductos" value="#{facturaVentaController.selected.valorIvaProductos}" title="#{bundle.EditFacturaVentaTitle_valorIvaProductos}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_valorIvaProductos}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_totalFacturaVenta}" for="totalFacturaVenta" />
+                        <p:inputText id="totalFacturaVenta" value="#{facturaVentaController.selected.totalFacturaVenta}" title="#{bundle.EditFacturaVentaTitle_totalFacturaVenta}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_totalFacturaVenta}"/>
+                        <p:outputLabel value="#{bundle.EditFacturaVentaLabel_clienteidCliente}" for="clienteidCliente" />
+                        <p:selectOneMenu id="clienteidCliente" value="#{facturaVentaController.selected.clienteidCliente}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_clienteidCliente}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteidClienteItem"
+                                           itemValue="#{clienteidClienteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturaVentaController.update}" value="#{bundle.Save}" update="display,:FacturaVentaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FacturaVentaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturaVentaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FacturaVentaCreateDlg" widgetVar="FacturaVentaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFacturaVentaTitle}">
+            <h:form id="FacturaVentaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{facturaVentaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_idVenta}" for="idVenta" />
+                        <p:inputText id="idVenta" value="#{facturaVentaController.selected.idVenta}" title="#{bundle.CreateFacturaVentaTitle_idVenta}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_idVenta}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_numerofacturaVenta}" for="numerofacturaVenta" />
+                        <p:inputText id="numerofacturaVenta" value="#{facturaVentaController.selected.numerofacturaVenta}" title="#{bundle.CreateFacturaVentaTitle_numerofacturaVenta}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_numerofacturaVenta}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_cantidadProducto}" for="cantidadProducto" />
+                        <p:inputText id="cantidadProducto" value="#{facturaVentaController.selected.cantidadProducto}" title="#{bundle.CreateFacturaVentaTitle_cantidadProducto}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_cantidadProducto}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_valorUnitarioProducto}" for="valorUnitarioProducto" />
+                        <p:inputText id="valorUnitarioProducto" value="#{facturaVentaController.selected.valorUnitarioProducto}" title="#{bundle.CreateFacturaVentaTitle_valorUnitarioProducto}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_valorUnitarioProducto}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_totalValorProducto}" for="totalValorProducto" />
+                        <p:inputText id="totalValorProducto" value="#{facturaVentaController.selected.totalValorProducto}" title="#{bundle.CreateFacturaVentaTitle_totalValorProducto}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_totalValorProducto}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_subtotalVenta}" for="subtotalVenta" />
+                        <p:inputText id="subtotalVenta" value="#{facturaVentaController.selected.subtotalVenta}" title="#{bundle.CreateFacturaVentaTitle_subtotalVenta}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_subtotalVenta}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_valorIvaProductos}" for="valorIvaProductos" />
+                        <p:inputText id="valorIvaProductos" value="#{facturaVentaController.selected.valorIvaProductos}" title="#{bundle.CreateFacturaVentaTitle_valorIvaProductos}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_valorIvaProductos}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_totalFacturaVenta}" for="totalFacturaVenta" />
+                        <p:inputText id="totalFacturaVenta" value="#{facturaVentaController.selected.totalFacturaVenta}" title="#{bundle.CreateFacturaVentaTitle_totalFacturaVenta}" required="true" requiredMessage="#{bundle.CreateFacturaVentaRequiredMessage_totalFacturaVenta}"/>
+                        <p:outputLabel value="#{bundle.CreateFacturaVentaLabel_clienteidCliente}" for="clienteidCliente" />
+                        <p:selectOneMenu id="clienteidCliente" value="#{facturaVentaController.selected.clienteidCliente}" required="true" requiredMessage="#{bundle.EditFacturaVentaRequiredMessage_clienteidCliente}">
+                            <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"
+                                           var="clienteidClienteItem"
+                                           itemValue="#{clienteidClienteItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{facturaVentaController.create}" value="#{bundle.Save}" update="display,:FacturaVentaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FacturaVentaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FacturaVentaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
